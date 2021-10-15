@@ -1,18 +1,31 @@
 @extends('layouts.main')
 
-@section('tilte', 'HDC Events')
+@section('title', 'HDC Events')
 
 @section('content')
-  <h1>Título</h1>
-  <img src="/img/banner.jpg" alt="Banner">
-  @if(10 < 5) 
-    <p>A condição é true</p>
-  @endif
 
-  @if($nome == 'Allan')
-      <p>O nome é {{ $nome }} e tem {{ $idade }} anos de idade {{ $profissao?? ''}}</p>
+<div id="search-container" class="col-md-12">
+  <h1>Busque um evento</h1>
+  <form action="">
+    <input type="text" id="search" name="search" class="form-control" placeholder="procurar">
+  </form>
+</div>
+<div id="events-container" class="col-md-12">
+  <h2>Próximos eventos</h2>
+  <p class="subtitle">Veja os eventos dos proximos dias</p>
+  <div id="cards-container" class="row">
+    @foreach($events as $event)
+    <div class="card col-md-3">
+      <img src="{{ asset('/img/event_placeholder.jpg') }}" alt="{{$event->title}}">
+      <div class="card-body">
+        <p class="card-date">10/09/2021</p>
+        <h5 class="card-tite">{{$event->title}}</h5>
+        <p class="card-participants">X-participantes</p>
+        <a href="#" class="btn btn-primary">Saber Mais</a>
+      </div>
+    </div>
+    @endforeach
+  </div>
+</div>
 
-    @else
-      <p>O nome esta errado</p>
-  @endif
 @endsection('content')
